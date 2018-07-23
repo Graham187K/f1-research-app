@@ -1,18 +1,49 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+
+import { connect } from 'react-redux';
+
+import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
+
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+import SeasonRaceListContainer from './components/Season/SeasonRaceList';
+import Home, { About } from './components/Home';
+
+import Nav from './components/navigation/Nav';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <React.Fragment>
+                <CssBaseline />
+
+                <Router>
+                    <div className="App">
+                        <Nav />
+
+                        <Switch>
+                            <Route exact path="/" component={Home} />
+                            <Route
+                                path="/races-2018"
+                                component={SeasonRaceListContainer}
+                            />
+                        </Switch>
+                    </div>
+                </Router>
+            </React.Fragment>
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = state => {
+    return {};
+};
+
+const mapDispatchToProps = dispatch => {
+    return {};
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);
